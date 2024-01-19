@@ -10,6 +10,16 @@ const mockUsers = [
 ];
 
 const UserList: React.FC = () => {
+  const handleEditUser = (userId: string) => {
+    //TODO: Add functionality to handle editing user
+    console.log(`Edit user with ID: ${userId}`);
+  };
+
+  const handleDeleteUser = (userId: string) => {
+    //TODO: Add functionality to handle deleting user
+    console.log(`Delete user with ID: ${userId}`);
+  };
+
   return (
     <div>
       <h2>User List</h2>
@@ -17,8 +27,24 @@ const UserList: React.FC = () => {
         {mockUsers.map((user) => (
           <ListGroup.Item key={user.id}>
             {user.name} - {user.email}
+            <Button
+              variant="primary"
+              className="ml-2"
+              onClick={() => handleEditUser(user.id)}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="danger"
+              className="ml-2"
+              onClick={() => handleDeleteUser(user.id)}
+            >
+              Delete
+            </Button>
             <Link to={`/users/${user.id}`}>
-              <Button variant="primary">View</Button>
+              <Button variant="info" className="ml-2">
+                View
+              </Button>
             </Link>
           </ListGroup.Item>
         ))}
