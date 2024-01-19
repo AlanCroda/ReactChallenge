@@ -13,10 +13,13 @@ function ListGroup() {
     { id: 2, name: "Jane Doe", email: "jane@example.com" },
     { id: 3, name: "Bob Smith", email: "bob@example.com" },
   ];
+
   return (
     <ul className="list-group">
       {items.map((item) => (
-        <li key={item.id}>{item.name}</li>
+        <li className="list-group-item" key={item.id}>
+          {item.name}
+        </li>
       ))}
     </ul>
   );
