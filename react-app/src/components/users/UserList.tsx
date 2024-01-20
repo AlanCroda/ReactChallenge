@@ -1,6 +1,7 @@
-import React from "react";
-import { ListGroup, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { ListGroup, Button, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import UserDetailModal from "./UserDetailModal"; // Import the new modal component
 
 interface UserListProps {
   onViewUser: (user: { id: string; name: string; email: string }) => void;
@@ -15,16 +16,20 @@ const mockUsers = [
 
 const UserList: React.FC<UserListProps> = ({ onViewUser, onEditUser }) => {
   const navigate = useNavigate();
+  const [selectedUser, setSelectedUser] = useState({
+    id: "", // Initialize with an empty string or a default value
+    name: "",
+    email: "",
+  });
+  const [showUserDetailModal, setShowUserDetailModal] = useState(false);
 
   const handleViewUser = (user: {
     id: string;
     name: string;
     email: string;
   }) => {
-    // TODO: Handle View functionality
-    // Navigate to the UserForm with the userId for viewing
-    onViewUser(user);
-    navigate(`/users/${user.id}`);
+    setSelectedUser(user);
+    setShowUserDetailModal(true);
   };
 
   const handleEditUser = (user: {
@@ -32,15 +37,17 @@ const UserList: React.FC<UserListProps> = ({ onViewUser, onEditUser }) => {
     name: string;
     email: string;
   }) => {
-    // Call the onEditUser prop to handle the edit action
     onEditUser(user);
-    // Navigate to the UserForm with the userId for editing
     navigate(`/users/edit/${user.id}`);
   };
 
   const handleDeleteUser = (userId: string) => {
-    //TODO: Add functionality to handle deleting user
+    // TODO: Add functionality to handle deleting user
     console.log(`Delete user with ID: ${userId}`);
+  };
+
+  const handleCloseUserDetailModal = () => {
+    setShowUserDetailModal(false);
   };
 
   return (
@@ -78,6 +85,14 @@ const UserList: React.FC<UserListProps> = ({ onViewUser, onEditUser }) => {
           </ListGroup.Item>
         ))}
       </ListGroup>
+
+      {/* User Detail Modal */}
+      {selectedUser.id && (
+        <UserDetailModal
+          user={selectedUser}
+          onClose={handleCloseUserDetailModal}
+        />
+      )}
     </div>
   );
 };
