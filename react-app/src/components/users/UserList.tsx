@@ -4,18 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import UserDetailModal from "./UserDetailModal";
 
 interface UserListProps {
+  users: { id: string; name: string; email: string }[];
   onViewUser: (user: { id: string; name: string; email: string }) => void;
   onEditUser: (user: { id: string; name: string; email: string }) => void;
-  onNewUser: (user: { id: string; name: string; email: string }) => void;
+  onNewUser: () => void;
 }
 
-const mockUsers = [
-  { id: "1", name: "John Doe", email: "john@example.com" },
-  { id: "2", name: "Jane Smith", email: "jane@example.com" },
-  { id: "3", name: "Bob Johnson", email: "bob@example.com" },
-];
-
-const UserList: React.FC<UserListProps> = ({ onViewUser, onEditUser }) => {
+const UserList: React.FC<UserListProps> = ({ users, onEditUser }) => {
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState({
     id: "",
@@ -55,7 +50,7 @@ const UserList: React.FC<UserListProps> = ({ onViewUser, onEditUser }) => {
     <div>
       <h2>User List</h2>
       <ListGroup>
-        {mockUsers.map((user) => (
+        {users.map((user) => (
           <ListGroup.Item key={user.id}>
             <div>
               {user.name} - {user.email}

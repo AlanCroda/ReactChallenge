@@ -3,12 +3,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 
 interface UserFormProps {
+  users: { id: string; name: string; email: string }[];
   onSave: (user: { id?: string; name: string; email: string }) => void;
   user?: { id?: string; name: string; email: string } | null;
 }
 
 const UserForm: React.FC<UserFormProps> = ({ onSave, user }) => {
-  const { userId } = useParams();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
