@@ -49,28 +49,32 @@ const UserList: React.FC<UserListProps> = ({ onViewUser, onEditUser }) => {
       <ListGroup>
         {mockUsers.map((user) => (
           <ListGroup.Item key={user.id}>
-            {user.name} - {user.email}
-            <Button
-              variant="info"
-              className="ml-2"
-              onClick={() => handleViewUser(user)}
-            >
-              View
-            </Button>
-            <Button
-              variant="primary"
-              className="ml-2"
-              onClick={() => handleEditUser(user)}
-            >
-              Edit
-            </Button>
-            <Button
-              variant="danger"
-              className="ml-2"
-              onClick={() => handleDeleteUser(user.id)}
-            >
-              Delete
-            </Button>
+            <div>
+              {user.name} - {user.email}
+            </div>
+            <div>
+              <Button
+                variant="info"
+                className="ml-2"
+                onClick={() => handleViewUser(user)}
+              >
+                View
+              </Button>
+              <Button
+                variant="primary"
+                className="ml-2"
+                onClick={() => handleEditUser(user)}
+              >
+                Edit
+              </Button>
+              <Button
+                variant="danger"
+                className="ml-2"
+                onClick={() => handleDeleteUser(user.id)}
+              >
+                Delete
+              </Button>
+            </div>
           </ListGroup.Item>
         ))}
       </ListGroup>
