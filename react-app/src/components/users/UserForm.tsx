@@ -4,7 +4,7 @@ import { Form, Button } from "react-bootstrap";
 
 interface UserFormProps {
   onSave: (user: { id?: string; name: string; email: string }) => void;
-  user: { id?: string; name: string; email: string } | null;
+  user?: { id?: string; name: string; email: string } | null;
 }
 
 const UserForm: React.FC<UserFormProps> = ({ onSave, user }) => {
@@ -37,15 +37,28 @@ const UserForm: React.FC<UserFormProps> = ({ onSave, user }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // TODO: Validate form data and save
-    //
+    // Validate form data
+    if (!formData.name || !formData.email) {
+      // Handle form validation error
+      return;
+    }
 
-    onSave({
-      id: userId || undefined,
-      name: formData.name,
-      email: formData.email,
-    });
+    // If there's a user prop, it means we are editing an existing user
+    if (user) {
+      onSave({
+        id: user.id,
+        name: formData.name,
+        email: formData.email,
+      });
+    } else {
+      // If there's no user prop, it means we are creating a new user
+      onSave({
+        name: formData.name,
+        email: formData.email,
+      });
+    }
 
+    // Navigate back to the user list page
     navigate("/users");
   };
 
@@ -72,7 +85,7 @@ const UserForm: React.FC<UserFormProps> = ({ onSave, user }) => {
         />
       </Form.Group>
       <Button variant="primary" type="submit">
-        {userId ? "Edit User" : "Create User"}
+        {user ? "Edit User" : "Create User"}
       </Button>
     </Form>
   );

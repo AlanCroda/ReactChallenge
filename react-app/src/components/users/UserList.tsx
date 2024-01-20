@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { ListGroup, Button, Modal } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import UserDetailModal from "./UserDetailModal"; // Import the new modal component
+import { ListGroup, Button } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import UserDetailModal from "./UserDetailModal";
 
 interface UserListProps {
   onViewUser: (user: { id: string; name: string; email: string }) => void;
   onEditUser: (user: { id: string; name: string; email: string }) => void;
+  onNewUser: (user: { id: string; name: string; email: string }) => void;
 }
 
 const mockUsers = [
@@ -17,7 +18,7 @@ const mockUsers = [
 const UserList: React.FC<UserListProps> = ({ onViewUser, onEditUser }) => {
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState({
-    id: "", // Initialize with an empty string or a default value
+    id: "",
     name: "",
     email: "",
   });
@@ -85,6 +86,13 @@ const UserList: React.FC<UserListProps> = ({ onViewUser, onEditUser }) => {
           </ListGroup.Item>
         ))}
       </ListGroup>
+
+      {/* Create User Button */}
+      <Link to="/newuser">
+        <Button variant="success" className="mt-3">
+          Create User
+        </Button>
+      </Link>
 
       {/* User Detail Modal */}
       {selectedUser.id && (
