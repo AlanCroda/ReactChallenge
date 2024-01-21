@@ -1,21 +1,23 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { NewsCard } from "./NewsCard";
+import { News } from "../../pages/NewsPage";
 
-const NewsList: React.FC = () => {
+interface NewsListProps {
+  news: News[];
+}
+
+const NewsList: React.FC<NewsListProps> = ({ news }) => {
   const { t } = useTranslation();
-  // Fetch news data and display the list
+
   return (
     <div>
-      <h2> {t("newsList-title")}</h2>
-      <ul>
-        <li>
-          <Link to="/news/1">News 1</Link>
-        </li>
-        <li>
-          <Link to="/news/2">News 2</Link>
-        </li>
-      </ul>
+      <h2>{t("newsList-title")}</h2>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {news.map((item) => (
+          <NewsCard key={item.id} newsItem={item} />
+        ))}
+      </div>
     </div>
   );
 };

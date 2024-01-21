@@ -1,23 +1,42 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
+import { Container, Card, Alert } from "react-bootstrap";
+import { News } from "../../pages/NewsPage";
 
-const NewsList: React.FC = () => {
-  const { t } = useTranslation();
+export interface NewsDetailProps {
+  news: News[];
+}
+
+const NewsDetail: React.FC<NewsDetailProps> = ({ news }) => {
+  const { newsId } = useParams();
+
+  // Function to fetch news item by id
+  const fetchNewsItemById = (newsId: string): News | undefined => {
+    return news.find((item) => item.id === newsId);
+  };
+
+  // Fetch the news item based on the id from the URL
+  const newsItem = fetchNewsItemById(newsId || "");
+
+  if (!newsItem) {
+    return <div>News not found</div>;
+  }
 
   return (
-    <div>
-      <h2> {t("newsList-title")}</h2>
-      <ul>
-        <li>
-          <Link to="/news/1">News 1</Link>
-        </li>
-        <li>
-          <Link to="/news/2">News 2</Link>
-        </li>
-      </ul>
-    </div>
+    <Container className="mt-4">
+      <Card>
+        <Card.Img variant="top" src={newsItem.image} />
+        <Card.Body>
+          <Card.Title>{newsItem.title}</Card.Title>
+          <Card.Text>{newsItem.summary}</Card.Text>
+        </Card.Body>
+      </Card>
+
+      <Alert variant="info" className="mt-4">
+        {newsItem.text}
+      </Alert>
+    </Container>
   );
 };
 
-export default NewsList;
+export default NewsDetail;
