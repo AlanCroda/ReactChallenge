@@ -8,9 +8,14 @@ interface UserListProps {
   onViewUser: (user: { id: string; name: string; email: string }) => void;
   onEditUser: (user: { id: string; name: string; email: string }) => void;
   onNewUser: () => void;
+  onDeleteUser: (id: string) => void;
 }
 
-const UserList: React.FC<UserListProps> = ({ users, onEditUser }) => {
+const UserList: React.FC<UserListProps> = ({
+  users,
+  onEditUser,
+  onDeleteUser,
+}) => {
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState({
     id: "",
@@ -38,8 +43,7 @@ const UserList: React.FC<UserListProps> = ({ users, onEditUser }) => {
   };
 
   const handleDeleteUser = (userId: string) => {
-    // TODO: Add functionality to handle deleting user
-    console.log(`Delete user with ID: ${userId}`);
+    onDeleteUser(userId);
   };
 
   const handleCloseUserDetailModal = () => {

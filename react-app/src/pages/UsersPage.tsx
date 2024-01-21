@@ -67,6 +67,17 @@ const UsersPage: React.FC = () => {
     navigate("/users");
   };
 
+  const handleDeleteUser = (id: string) => {
+    // Filter out the user with the specified id
+    const updatedUsers = mockUsers.filter((user) => user.id !== id);
+
+    // Update users in state
+    setMockUsers(updatedUsers);
+
+    // Clear the selected user after deleting
+    setSelectedUser(null);
+  };
+
   return (
     <div>
       <Routes>
@@ -78,6 +89,7 @@ const UsersPage: React.FC = () => {
               onViewUser={handleViewUser}
               onEditUser={handleEditUser}
               onNewUser={handleNewUser}
+              onDeleteUser={handleDeleteUser}
             />
           }
         />
