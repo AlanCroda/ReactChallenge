@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ListGroup, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import UserDetailModal from "./UserDetailModal";
+import { useTranslation } from "react-i18next";
 
 interface UserListProps {
   users: { id: string; name: string; email: string }[];
@@ -16,6 +17,8 @@ const UserList: React.FC<UserListProps> = ({
   onEditUser,
   onDeleteUser,
 }) => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState({
     id: "",
@@ -52,7 +55,7 @@ const UserList: React.FC<UserListProps> = ({
 
   return (
     <div>
-      <h2>User List</h2>
+      <h2> {t("userList-title")}</h2>
       <ListGroup>
         {users.map((user) => (
           <ListGroup.Item key={user.id}>
@@ -65,21 +68,21 @@ const UserList: React.FC<UserListProps> = ({
                 className="ml-2"
                 onClick={() => handleViewUser(user)}
               >
-                View
+                {t("view-btn")}
               </Button>
               <Button
                 variant="primary"
                 className="ml-2"
                 onClick={() => handleEditUser(user)}
               >
-                Edit
+                {t("edit-btn")}
               </Button>
               <Button
                 variant="danger"
                 className="ml-2"
                 onClick={() => handleDeleteUser(user.id)}
               >
-                Delete
+                {t("delete-btn")}
               </Button>
             </div>
           </ListGroup.Item>
@@ -89,7 +92,7 @@ const UserList: React.FC<UserListProps> = ({
       {/* Create User Button */}
       <Link to="/newuser">
         <Button variant="success" className="mt-3">
-          Create User
+          {t("createUser-btn")}
         </Button>
       </Link>
 

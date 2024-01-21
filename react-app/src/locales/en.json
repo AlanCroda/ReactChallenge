@@ -1,0 +1,16 @@
+{
+  "user-navBtn": "Users",
+  "news-navBtn": "News",
+  "userList-title": "Users List",
+  "newsList-title": "News List",
+  "view-btn": "View",
+  "edit-btn": "Edit",
+  "delete-btn": "Delete",
+  "createUser-btn": "Create User",
+  "editUser-btn": "Edit User",
+  "name-text": "Name",
+  "email-text": "Email",
+  "name-placeholder": "Enter a Username",
+  "email-placeholder": "Enter an Email",
+  "userDetails-title": "User Details"
+}

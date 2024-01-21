@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const NewsList: React.FC = () => {
-  // Fetch news data and display the list
+  const { t } = useTranslation();
+
   return (
     <div>
-      <h2>News List</h2>
+      <h2> {t("newsList-title")}</h2>
       <ul>
         <li>
           <Link to="/news/1">News 1</Link>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 interface UserFormProps {
   users: { id: string; name: string; email: string }[];
@@ -9,6 +10,7 @@ interface UserFormProps {
 }
 
 const UserForm: React.FC<UserFormProps> = ({ onSave, user }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -62,30 +64,33 @@ const UserForm: React.FC<UserFormProps> = ({ onSave, user }) => {
     navigate("/users");
   };
 
+  const editUserTrans = t("editUser-btn");
+  const createUserTrans = t("createUser-btn");
+
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formName">
-        <Form.Label>Name</Form.Label>
+        <Form.Label>{t("name-text")}</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter name"
+          placeholder={t("name-placeholder")}
           name="name"
           value={formData.name}
           onChange={handleInputChange}
         />
       </Form.Group>
       <Form.Group controlId="formEmail">
-        <Form.Label>Email</Form.Label>
+        <Form.Label>{t("email-text")}</Form.Label>
         <Form.Control
           type="email"
-          placeholder="Enter email"
+          placeholder={t("email-placeholder")}
           name="email"
           value={formData.email}
           onChange={handleInputChange}
         />
       </Form.Group>
       <Button variant="primary" type="submit">
-        {user ? "Edit User" : "Create User"}
+        {user ? editUserTrans : createUserTrans}
       </Button>
     </Form>
   );

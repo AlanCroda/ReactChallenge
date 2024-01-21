@@ -1,0 +1,16 @@
+{
+  "user-navBtn": "Usuarios",
+  "news-navBtn": "Noticias",
+  "userList-title": "Lista de Usuarios",
+  "newsList-title": "Lista de Noticias",
+  "view-btn": "Ver",
+  "edit-btn": "Editar",
+  "delete-btn": "Eliminar",
+  "createUser-btn": "Crear Usuario",
+  "editUser-btn": "Editar Usuario",
+  "name-text": "Nombre",
+  "email-text": "Email",
+  "name-placeholder": "Introduce tu nombre de usuario",
+  "email-placeholder": "Introduce tu Email",
+  "userDetails-title": "Detalles del usuario"
+}

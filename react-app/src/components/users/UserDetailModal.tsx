@@ -1,5 +1,6 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 interface UserDetailModalProps {
   user: { id: string; name: string; email: string };
@@ -7,15 +8,21 @@ interface UserDetailModalProps {
 }
 
 const UserDetailModal: React.FC<UserDetailModalProps> = ({ user, onClose }) => {
+  const { t } = useTranslation();
+
   return (
     <Modal show onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>User Details</Modal.Title>
+        <Modal.Title>{t("userDetails-title")}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p>ID: {user.id}</p>
-        <p>Name: {user.name}</p>
-        <p>Email: {user.email}</p>
+        <p>
+          {t("name-text")}: {user.name}
+        </p>
+        <p>
+          {t("email-text")}: {user.email}
+        </p>
       </Modal.Body>
     </Modal>
   );

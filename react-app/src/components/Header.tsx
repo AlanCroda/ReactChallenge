@@ -1,9 +1,11 @@
-// components/Header.tsx
 import React from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Header: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand as={Link} to="/users">
@@ -13,10 +15,10 @@ const Header: React.FC = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link as={Link} to="/users">
-            Users
+            {t("user-navBtn")}
           </Nav.Link>
           <Nav.Link as={Link} to="/news">
-            News
+            {t("news-navBtn")}
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
