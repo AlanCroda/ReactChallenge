@@ -23,8 +23,6 @@ export const UserProvider: React.FC<UserContextProps> = ({ children }) => {
     { id: "3", name: "Bob Johnson", email: "bob@example.com" },
   ]);
 
-  // You can fetch or set the initialUsers data here as needed
-
   const contextValue: UserContextValue = {
     initialUsers,
   };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import UserList from "../components/users/UserList";
 import UserForm from "../components/users/UserForm";
@@ -46,11 +46,11 @@ const UsersPage: React.FC = () => {
     email: string;
   }) => {
     // Update users in state
-    setMockUsers((prevUsers) => {
+    setMockUsers((prevUsers: any) => {
       if (prevUsers) {
         if (user.id) {
           // If user.id exists, it means we are editing an existing user
-          return prevUsers.map((prevUser) =>
+          return prevUsers.map((prevUser: any) =>
             prevUser.id === user.id ? user : prevUser
           );
         } else {
