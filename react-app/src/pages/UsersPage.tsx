@@ -48,10 +48,10 @@ const UsersPage: React.FC = () => {
     email: string;
   }) => {
     // Update users in state
-    setMockUsers((prevUsers) => {
+    setMockUsers((prevUsers: any) => {
       if (user.id) {
         // If user.id exists, it means we are editing an existing user
-        return prevUsers.map((prevUser) =>
+        return prevUsers.map((prevUser: any) =>
           prevUser.id === user.id ? user : prevUser
         );
       } else {
