@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import { Route, Routes, useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import UserList from "../components/users/UserList";
 import UserForm from "../components/users/UserForm";
+import { useUserContext } from "../components/users/data/UserContext";
 
 const UsersPage: React.FC = () => {
-  const [mockUsers, setMockUsers] = useState([
-    { id: "1", name: "John Doe", email: "john@example.com" },
-    { id: "2", name: "Jane Smith", email: "jane@example.com" },
-    { id: "3", name: "Bob Johnson", email: "bob@example.com" },
-  ]);
+  const { initialUsers } = useUserContext();
+
+  const [mockUsers, setMockUsers] = useState(initialUsers);
 
   const [selectedUser, setSelectedUser] = useState<{
     id?: string;
@@ -17,7 +16,6 @@ const UsersPage: React.FC = () => {
   } | null>(null);
 
   const navigate = useNavigate();
-  const params = useParams();
 
   const handleViewUser = (user: {
     id: string;
@@ -49,14 +47,19 @@ const UsersPage: React.FC = () => {
   }) => {
     // Update users in state
     setMockUsers((prevUsers) => {
-      if (user.id) {
-        // If user.id exists, it means we are editing an existing user
-        return prevUsers.map((prevUser) =>
-          prevUser.id === user.id ? user : prevUser
-        );
+      if (prevUsers) {
+        if (user.id) {
+          // If user.id exists, it means we are editing an existing user
+          return prevUsers.map((prevUser) =>
+            prevUser.id === user.id ? user : prevUser
+          );
+        } else {
+          // If user.id doesn't exist, it means we are creating a new user
+          return [...prevUsers, { ...user, id: String(prevUsers.length + 1) }];
+        }
       } else {
-        // If user.id doesn't exist, it means we are creating a new user
-        return [...prevUsers, { ...user, id: String(prevUsers.length + 1) }];
+        // If prevUsers is undefined or null, initialize it with an empty array
+        return [user];
       }
     });
 
