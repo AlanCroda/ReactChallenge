@@ -62,7 +62,7 @@ const NewsPage: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<NewsList news={news} />} />
-      <Route path=":newsId/*" element={<NewsDetail news={news} />} />
+      <Route path=":newsId" element={<NewsDetail news={news} />} />
     </Routes>
   );
 };

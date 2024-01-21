@@ -8,7 +8,7 @@ export interface NewsDetailProps {
 }
 
 const NewsDetail: React.FC<NewsDetailProps> = ({ news }) => {
-  const { newsId } = useParams();
+  const { newsId } = useParams<{ newsId?: string }>();
 
   // Function to fetch news item by id
   const fetchNewsItemById = (newsId: string): News | undefined => {
