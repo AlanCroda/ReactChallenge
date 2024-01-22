@@ -40,12 +40,9 @@ const UserDetailPage: React.FC<UserDetailPageProps> = ({ users }) => {
     <Container className="mt-4">
       <Card>
         <Card.Header>
-          <Link to="/users">
-            <Button variant="secondary">{t("back-to-list")}</Button>
-          </Link>
+          <Card.Title>{t("userDetails-title")}</Card.Title>
         </Card.Header>
         <Card.Body>
-          <Card.Title>{t("userDetails-title")}</Card.Title>
           <Card.Text>
             <p>ID: {user.id}</p>
             <p>
@@ -56,6 +53,11 @@ const UserDetailPage: React.FC<UserDetailPageProps> = ({ users }) => {
             </p>
           </Card.Text>
         </Card.Body>
+        <Card.Footer>
+          <Link to="/users">
+            <Button variant="secondary">{t("backToList-btn")}</Button>
+          </Link>
+        </Card.Footer>
       </Card>
     </Container>
   );

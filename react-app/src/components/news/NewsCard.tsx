@@ -1,4 +1,5 @@
 import { Button, Card } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 interface NewsItemProps {
@@ -12,6 +13,7 @@ interface NewsItemProps {
 }
 
 export const NewsCard: React.FC<NewsItemProps> = ({ newsItem }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const handleViewNewsItem = () => {
     navigate(`/news/${newsItem.id}`);
@@ -19,12 +21,12 @@ export const NewsCard: React.FC<NewsItemProps> = ({ newsItem }) => {
 
   return (
     <Card style={{ width: "18rem", margin: "10px" }}>
-      <Card.Img variant="top" src={newsItem.image} />
+      <Card.Img className="newsCard-img" variant="top" src={newsItem.image} />
       <Card.Body>
         <Card.Title>{newsItem.title}</Card.Title>
         <Card.Text>{newsItem.summary}</Card.Text>
         <Button variant="primary" onClick={handleViewNewsItem}>
-          Read More
+          {t("readMore-btn")}
         </Button>
       </Card.Body>
     </Card>

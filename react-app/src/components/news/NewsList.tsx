@@ -12,8 +12,8 @@ const NewsList: React.FC<NewsListProps> = ({ news }) => {
 
   return (
     <div>
-      <h2>{t("newsList-title")}</h2>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <h2 className="newsList-title">{t("newsList-title")}</h2>
+      <div className="newsList-wrapper">
         {news.map((item) => (
           <NewsCard key={item.id} newsItem={item} />
         ))}

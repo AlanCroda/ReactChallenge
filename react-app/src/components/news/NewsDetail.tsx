@@ -25,15 +25,23 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ news }) => {
   return (
     <Container className="mt-4">
       <Card>
-        <Card.Img variant="top" src={newsItem.image} />
+        <Card.Img
+          className="newsDetails-img"
+          variant="top"
+          src={newsItem.image}
+        />
         <Card.Body>
           <Card.Title>{newsItem.title}</Card.Title>
           <Card.Text>{newsItem.summary}</Card.Text>
         </Card.Body>
       </Card>
 
-      <Alert variant="info" className="mt-4">
-        {newsItem.text}
+      <Alert variant="info" className="mt-4 news-text">
+        <div
+          dangerouslySetInnerHTML={{
+            __html: newsItem.text.replace(/\n/g, "<p />"),
+          }}
+        />
       </Alert>
     </Container>
   );

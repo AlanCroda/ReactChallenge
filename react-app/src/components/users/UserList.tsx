@@ -32,6 +32,7 @@ const UserList: React.FC<UserListProps> = ({
 
   return (
     <div className="userList-wrapper">
+      <h2> {t("userList-title")} </h2>
       <ListGroup>
         {users.map((user) => (
           <ListGroup.Item key={user.id}>

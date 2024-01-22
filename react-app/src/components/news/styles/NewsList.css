@@ -1,0 +1,11 @@
+.newsList-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 95%;
+}
+
+.newsList-title {
+  margin: auto;
+  width: 95%;
+}

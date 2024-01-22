@@ -1,8 +1,6 @@
 {
   "user-navBtn": "Usuarios",
   "news-navBtn": "Noticias",
-  "userList-title": "Lista de Usuarios",
-  "newsList-title": "Lista de Noticias",
   "view-btn": "Ver",
   "edit-btn": "Editar",
   "delete-btn": "Eliminar",
@@ -12,5 +10,9 @@
   "email-text": "Email",
   "name-placeholder": "Introduce tu nombre de usuario",
   "email-placeholder": "Introduce tu Email",
-  "userDetails-title": "Detalles del usuario"
+  "userDetails-title": "Detalles del Usuario",
+  "backToList-btn": "Regresar",
+  "readMore-btn": "Leer más",
+  "userList-title": "Lista de Usuarios",
+  "newsList-title": "Lista de Noticias"
 }
