@@ -1,15 +1,20 @@
 import React, { useState } from "react";
-import { Route, Routes, useNavigate, useParams } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import UserList from "../components/users/UserList";
 import UserForm from "../components/users/UserForm";
 
-const UsersPage: React.FC = () => {
-  const [mockUsers, setMockUsers] = useState([
-    { id: "1", name: "John Doe", email: "john@example.com" },
-    { id: "2", name: "Jane Smith", email: "jane@example.com" },
-    { id: "3", name: "Bob Johnson", email: "bob@example.com" },
-  ]);
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
 
+interface UsersPageProps {
+  users: User[];
+  setUsers: React.Dispatch<React.SetStateAction<User[]>>; // Assuming you have a setUsers function
+}
+
+const UsersPage: React.FC<UsersPageProps> = ({ users, setUsers }) => {
   const [selectedUser, setSelectedUser] = useState<{
     id?: string;
     name: string;
@@ -17,7 +22,6 @@ const UsersPage: React.FC = () => {
   } | null>(null);
 
   const navigate = useNavigate();
-  const params = useParams();
 
   const handleViewUser = (user: {
     id: string;
@@ -33,7 +37,7 @@ const UsersPage: React.FC = () => {
     email: string;
   }) => {
     setSelectedUser(user);
-    navigate(`/users/edit/${user.id}`);
+    navigate(`/user/edit/${user.id}`);
   };
 
   const handleNewUser = () => {
@@ -48,7 +52,7 @@ const UsersPage: React.FC = () => {
     email: string;
   }) => {
     // Update users in state
-    setMockUsers((prevUsers: any) => {
+    setUsers((prevUsers: any) => {
       if (user.id) {
         // If user.id exists, it means we are editing an existing user
         return prevUsers.map((prevUser: any) =>
@@ -69,10 +73,10 @@ const UsersPage: React.FC = () => {
 
   const handleDeleteUser = (id: string) => {
     // Filter out the user with the specified id
-    const updatedUsers = mockUsers.filter((user) => user.id !== id);
+    const updatedUsers = users.filter((user) => user.id !== id);
 
     // Update users in state
-    setMockUsers(updatedUsers);
+    setUsers(updatedUsers);
 
     // Clear the selected user after deleting
     setSelectedUser(null);
@@ -85,10 +89,8 @@ const UsersPage: React.FC = () => {
           path="/"
           element={
             <UserList
-              users={mockUsers}
-              onViewUser={handleViewUser}
+              users={users}
               onEditUser={handleEditUser}
-              onNewUser={handleNewUser}
               onDeleteUser={handleDeleteUser}
             />
           }
@@ -97,7 +99,7 @@ const UsersPage: React.FC = () => {
           path="/edit/:id"
           element={
             <UserForm
-              users={mockUsers}
+              users={users}
               onSave={handleSaveUser}
               user={selectedUser}
             />
@@ -105,7 +107,7 @@ const UsersPage: React.FC = () => {
         />
         <Route
           path="/newuser"
-          element={<UserForm users={mockUsers} onSave={handleSaveUser} />}
+          element={<UserForm users={users} onSave={handleSaveUser} />}
         />
       </Routes>
     </div>

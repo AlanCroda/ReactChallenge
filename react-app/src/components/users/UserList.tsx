@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { ListGroup, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import UserDetailModal from "./UserDetailModal";
 import { useTranslation } from "react-i18next";
 
 interface UserListProps {
   users: { id: string; name: string; email: string }[];
-  onViewUser: (user: { id: string; name: string; email: string }) => void;
   onEditUser: (user: { id: string; name: string; email: string }) => void;
-  onNewUser: () => void;
   onDeleteUser: (id: string) => void;
 }
 
@@ -18,23 +15,7 @@ const UserList: React.FC<UserListProps> = ({
   onDeleteUser,
 }) => {
   const { t } = useTranslation();
-
   const navigate = useNavigate();
-  const [selectedUser, setSelectedUser] = useState({
-    id: "",
-    name: "",
-    email: "",
-  });
-  const [showUserDetailModal, setShowUserDetailModal] = useState(false);
-
-  const handleViewUser = (user: {
-    id: string;
-    name: string;
-    email: string;
-  }) => {
-    setSelectedUser(user);
-    setShowUserDetailModal(true);
-  };
 
   const handleEditUser = (user: {
     id: string;
@@ -49,13 +30,8 @@ const UserList: React.FC<UserListProps> = ({
     onDeleteUser(userId);
   };
 
-  const handleCloseUserDetailModal = () => {
-    setShowUserDetailModal(false);
-  };
-
   return (
     <div className="userList-wrapper">
-      <h2> {t("userList-title")}</h2>
       <ListGroup>
         {users.map((user) => (
           <ListGroup.Item key={user.id}>
@@ -63,13 +39,9 @@ const UserList: React.FC<UserListProps> = ({
               {user.name} - {user.email}
             </div>
             <div>
-              <Button
-                variant="info"
-                className="ml-2"
-                onClick={() => handleViewUser(user)}
-              >
-                {t("view-btn")}
-              </Button>
+              <Link to={`/user/${user.id}`} className="mr-2">
+                <Button variant="info">{t("view-btn")}</Button>
+              </Link>
               <Button
                 variant="primary"
                 className="ml-2"
@@ -95,14 +67,6 @@ const UserList: React.FC<UserListProps> = ({
           {t("createUser-btn")}
         </Button>
       </Link>
-
-      {/* User Detail Modal */}
-      {selectedUser.id && (
-        <UserDetailModal
-          user={selectedUser}
-          onClose={handleCloseUserDetailModal}
-        />
-      )}
     </div>
   );
 };
