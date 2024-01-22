@@ -8,16 +8,17 @@ const Header: React.FC = () => {
 
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand as={Link} to="/users">
-        User App
+      <Navbar.Brand className="btn btn-outline-dark" as={Link} to="/users">
+        React Challenge App
       </Navbar.Brand>
+      <div className="separator"></div>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/users">
+          <Nav.Link className="btn btn-outline-dark" as={Link} to="/users">
             {t("user-navBtn")}
           </Nav.Link>
-          <Nav.Link as={Link} to="/news">
+          <Nav.Link className="btn btn-outline-dark" as={Link} to="/news">
             {t("news-navBtn")}
           </Nav.Link>
         </Nav>

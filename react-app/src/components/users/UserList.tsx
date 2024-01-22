@@ -54,7 +54,7 @@ const UserList: React.FC<UserListProps> = ({
   };
 
   return (
-    <div>
+    <div className="userList-wrapper">
       <h2> {t("userList-title")}</h2>
       <ListGroup>
         {users.map((user) => (

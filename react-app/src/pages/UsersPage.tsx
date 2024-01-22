@@ -79,7 +79,7 @@ const UsersPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="userPage-wrapper">
       <Routes>
         <Route
           path="/"
