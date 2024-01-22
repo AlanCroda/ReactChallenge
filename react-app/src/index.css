@@ -29,10 +29,10 @@
     border-radius: 4px;
     margin-left: 10px !important;
   }
+}
 
-  .nav-link:hover {
-    color: white;
-  }
+.nav-link:hover {
+  color: white;
 }
 
 .separator {

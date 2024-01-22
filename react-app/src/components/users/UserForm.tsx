@@ -68,7 +68,7 @@ const UserForm: React.FC<UserFormProps> = ({ onSave, user }) => {
   const createUserTrans = t("createUser-btn");
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className="user-form" onSubmit={handleSubmit}>
       <Form.Group controlId="formName">
         <Form.Label>{t("name-text")}</Form.Label>
         <Form.Control
@@ -89,7 +89,7 @@ const UserForm: React.FC<UserFormProps> = ({ onSave, user }) => {
           onChange={handleInputChange}
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button className="form-submit-btn" variant="primary" type="submit">
         {user ? editUserTrans : createUserTrans}
       </Button>
     </Form>
