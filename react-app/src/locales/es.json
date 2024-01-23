@@ -14,5 +14,6 @@
   "backToList-btn": "Regresar",
   "readMore-btn": "Leer más",
   "userList-title": "Lista de Usuarios",
-  "newsList-title": "Lista de Noticias"
+  "newsList-title": "Lista de Noticias",
+  "user-not-found": "El usuario no fue encontrado"
 }

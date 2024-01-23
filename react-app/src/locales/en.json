@@ -14,5 +14,6 @@
   "backToList-btn": "Back",
   "readMore-btn": "Read More",
   "userList-title": "Users List",
-  "newsList-title": "News List"
+  "newsList-title": "News List",
+  "user-not-found": "The user was not found"
 }

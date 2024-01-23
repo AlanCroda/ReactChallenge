@@ -24,14 +24,20 @@ const UserDetailPage: React.FC<UserDetailPageProps> = ({ users }) => {
       return users.find((user) => user.id === userId);
     };
 
-    const fetchedUser = fetchUserById(userId);
+    const fetchedUser = userId ? fetchUserById(userId) : undefined;
     setUser(fetchedUser);
   }, [userId, users]);
 
   if (!user) {
     return (
       <Container className="mt-4">
-        <p>{t("user-not-found")}</p>
+        <Card>
+          <Card.Body>
+            <Card.Text>
+              <p className="user-not-found">{t("user-not-found")}</p>
+            </Card.Text>
+          </Card.Body>
+        </Card>
       </Container>
     );
   }
